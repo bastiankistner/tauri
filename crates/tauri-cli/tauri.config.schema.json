@@ -418,6 +418,11 @@
             "null"
           ]
         },
+        "disableBackgroundThrottling": {
+          "description": "Disables background throttling for the webview. **macOS** is the only platform this currently works",
+          "default": false,
+          "type": "boolean"
+        },
         "additionalBrowserArgs": {
           "description": "Defines additional browser arguments on Windows. By default wry passes `--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection`\n so if you use this method, you also need to disable these components by yourself if you want.",
           "type": [

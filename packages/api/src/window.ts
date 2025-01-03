@@ -1385,6 +1385,18 @@ class Window {
   }
 
   /**
+   * Disables background throttling for the webview.
+   *
+   * **macOS** is the only platform this currently works
+   */
+  async setDisableBackgroundThrottling(disable: boolean): Promise<void> {
+    return invoke('plugin:window|set_disable_background_throttling', {
+      label: this.label,
+      value: disable
+    })
+  }
+
+  /**
    * Bring the window to front and focus.
    * @example
    * ```typescript
@@ -2224,6 +2236,8 @@ interface WindowOptions {
   title?: string
   /** Whether the window is in fullscreen mode or not. */
   fullscreen?: boolean
+  /** Disables background throttling for the webview. **macOS** is the only platform this currently works */
+  disableBackgroundThrottling?: boolean
   /** Whether the window will be initially focused or not. */
   focus?: boolean
   /**

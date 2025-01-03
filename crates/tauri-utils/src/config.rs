@@ -1479,6 +1479,9 @@ pub struct WindowConfig {
   /// The window height.
   #[serde(default = "default_height")]
   pub height: f64,
+  /// Disables background throttling for the webview. **macOS** is the only platform this currently works
+  #[serde(default)]
+  pub disable_background_throttling: bool,
   /// The min window width.
   #[serde(alias = "min-width")]
   pub min_width: Option<f64>,
@@ -1694,6 +1697,7 @@ impl Default for WindowConfig {
     Self {
       label: default_window_label(),
       url: WebviewUrl::default(),
+      disable_background_throttling: false,
       create: true,
       user_agent: None,
       drag_drop_enabled: true,
@@ -2960,6 +2964,7 @@ mod build {
       let label = str_lit(&self.label);
       let create = &self.create;
       let url = &self.url;
+      let disable_background_throttling = self.disable_background_throttling;
       let user_agent = opt_str_lit(self.user_agent.as_ref());
       let drag_drop_enabled = self.drag_drop_enabled;
       let center = self.center;
@@ -3012,6 +3017,7 @@ mod build {
         url,
         create,
         user_agent,
+        disable_background_throttling,
         drag_drop_enabled,
         center,
         x,

@@ -725,6 +725,15 @@ fn main() {
     self
   }
 
+  /// Disables background throttling for the webview.
+  ///
+  /// **macOS** is the only platform this currently works
+  #[must_use]
+  pub fn disable_background_throttling(mut self, disable: bool) -> Self {
+    self.webview_attributes.disable_background_throttling = disable;
+    self
+  }
+
   /// Enable or disable incognito mode for the WebView.
   ///
   ///  ## Platform-specific:

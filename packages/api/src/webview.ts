@@ -669,6 +669,9 @@ interface WebviewOptions {
   width: number
   /** The initial height. */
   height: number
+
+  /* disable suspension of tabs */
+  disableBackgroundThrottling?: boolean
   /**
    * Whether the webview is transparent or not.
    * Note that on `macOS` this requires the `macos-private-api` feature flag, enabled under `tauri.conf.json > app > macOSPrivateApi`.

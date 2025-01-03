@@ -285,6 +285,11 @@
           "type": "number",
           "format": "double"
         },
+        "disableBackgroundThrottling": {
+          "description": "Disables background throttling for the webview. **macOS** is the only platform this currently works",
+          "default": false,
+          "type": "boolean"
+        },
         "minWidth": {
           "description": "The min window width.",
           "type": [

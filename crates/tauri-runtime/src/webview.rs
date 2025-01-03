@@ -198,6 +198,7 @@ pub struct WebviewAttributes {
   pub initialization_scripts: Vec<String>,
   pub data_directory: Option<PathBuf>,
   pub drag_drop_handler_enabled: bool,
+  pub disable_background_throttling: bool,
   pub clipboard: bool,
   pub accept_first_mouse: bool,
   pub additional_browser_args: Option<String>,
@@ -225,7 +226,9 @@ impl From<&WindowConfig> for WebviewAttributes {
       .zoom_hotkeys_enabled(config.zoom_hotkeys_enabled)
       .use_https_scheme(config.use_https_scheme)
       .browser_extensions_enabled(config.browser_extensions_enabled)
+      .disable_background_throttling(config.disable_background_throttling)
       .devtools(config.devtools);
+
     #[cfg(any(not(target_os = "macos"), feature = "macos-private-api"))]
     {
       builder = builder.transparent(config.transparent);
@@ -262,6 +265,7 @@ impl WebviewAttributes {
       initialization_scripts: Vec::new(),
       data_directory: None,
       drag_drop_handler_enabled: true,
+      disable_background_throttling: false,
       clipboard: false,
       accept_first_mouse: false,
       additional_browser_args: None,
@@ -317,6 +321,12 @@ impl WebviewAttributes {
   #[must_use]
   pub fn enable_clipboard_access(mut self) -> Self {
     self.clipboard = true;
+    self
+  }
+
+  #[must_use]
+  pub fn disable_background_throttling(mut self, disable: bool) -> Self {
+    self.disable_background_throttling = disable;
     self
   }
 
